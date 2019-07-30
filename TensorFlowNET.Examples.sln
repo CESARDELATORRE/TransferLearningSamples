@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TensorFlowNET.Examples", "TensorFlow.NET.Samples\TensorFlowNET.Examples.csproj", "{0AA5D520-6D0B-4AE1-A2BB-D47ACA943CF5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TensorFlowNET.Core", "..\TensorFlow.NET\src\TensorFlowNET.Core\TensorFlowNET.Core.csproj", "{906F32C8-702B-407A-A9B0-6342D2728096}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AA5D520-6D0B-4AE1-A2BB-D47ACA943CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA5D520-6D0B-4AE1-A2BB-D47ACA943CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA5D520-6D0B-4AE1-A2BB-D47ACA943CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA5D520-6D0B-4AE1-A2BB-D47ACA943CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906F32C8-702B-407A-A9B0-6342D2728096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906F32C8-702B-407A-A9B0-6342D2728096}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906F32C8-702B-407A-A9B0-6342D2728096}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906F32C8-702B-407A-A9B0-6342D2728096}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FAAB0B74-93BB-4522-BE3C-A0B363FEBA13}
+	EndGlobalSection
+EndGlobal
