@@ -15,7 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ImageProcessing\ImagesForPredictions\ChairsForPredictions\" />
     <Folder Include="ImageProcessing\ImagesForPredictions\PeopleForPrediction\" />
+    <Folder Include="ImageProcessing\CustomTensorFlowModels\" />
+    <Folder Include="ImageProcessing\ML.NET\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +26,52 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ImageProcessing\CustomTensorFlowModels\azure_cs_custom_vision_chair_image_classification_exported_labels.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\CustomTensorFlowModels\azure_cs_custom_vision_chair_image_classification_exported_model.pb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\CustomTensorFlowModels\tfdotnet_custom_chair_image_classification_labels_list.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\CustomTensorFlowModels\tfdotnet_custom_chair_image_classification_model.pb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\gamer_chair_01.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\green-office-chair-test.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\high-metal-office-chair.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\high-metal-office-chair_leaked.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\north_west_us_green_chair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\north_west_us_wooden_chair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\plain_black_chair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\plain_white_chair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\ChairsForPredictions\usa_flag_game_watching_chair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="ImageProcessing\ImagesForPredictions\FlowersForPredictions\BlackRose.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ImageProcessing\ImagesForPredictions\FlowersForPredictions\RareThreeSpiralledRose.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ImageProcessing\ImagesForPredictions\OtherObjects\toaster.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="ImageProcessing\ImagesForPredictions\PeopleForPrediction\grace_hopper.jpg">
