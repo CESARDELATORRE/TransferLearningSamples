@@ -34,14 +34,17 @@ namespace TensorFlowNET.Examples.ImageProcess
         string summaries_dir = Path.Join(transfer_learning_assets_dir, "retrain_logs");
 
         //CHAIRS SCENARIO  
-        string image_filename_to_use_for_prediction = "green-office-chair-test.jpg";  //north_west_us_wooden_chair.png //high-metal-office-chair.jpg  //green-office-chair-test.jpg  
-        string images_folder_for_training = Path.Join(training_images_dir, "chair_training_images");
-        string images_folder_for_predicting = Path.Join(root_image_processing, "ImagesForPredictions", "ChairsForPredictions");
+        //string image_filename_to_use_for_prediction = "green-office-chair-test.jpg";  //north_west_us_wooden_chair.png //high-metal-office-chair.jpg  //green-office-chair-test.jpg  
+        //string images_folder_for_training = Path.Join(training_images_dir, "chair_training_images");
+        //string images_folder_for_predicting = Path.Join(root_image_processing, "ImagesForPredictions", "ChairsForPredictions");
 
-        // FLOWERS SCENARIO
-        //string image_filename_to_use_for_prediction = "RareThreeSpiralledRose.png";  //BlackRose.png // RareThreeSpiralledRose.png
+        // FLOWERS SCENARIO 
+        string image_filename_to_use_for_prediction = "RareThreeSpiralledRose.png";  //BlackRose.png // RareThreeSpiralledRose.png
+        //(SMALL IMAGE-SET)
+        string images_folder_for_training = Path.Join(training_images_dir, "flower_photos_small_set");
+        //(FULL IMAGE-SET)
         //string images_folder_for_training = Path.Join(training_images_dir, "flower_photos");
-        //string images_folder_for_predicting = Path.Join(root_image_processing, "ImagesForPredictions", "FlowersForPredictions");
+        string images_folder_for_predicting = Path.Join(root_image_processing, "ImagesForPredictions", "FlowersForPredictions");
 
         string bottleneck_dir = Path.Join(transfer_learning_assets_dir, "bottleneck");
         string output_graph = Path.Join(transfer_learning_assets_dir, "tfdotnet_my_custom_retrained_model.pb");
@@ -75,25 +78,35 @@ namespace TensorFlowNET.Examples.ImageProcess
 
         public bool Run()
         {
+            // Download inceptionv3 model and image set
+            //
             PrepareData();
          
             // If pretrained model exists, Evaluate/Test and show metrics 
-            Test(null);
+            //Test(null);
 
             // If pretrainedmodel exists, Try a prediction 
-            Predict(null);
+            //Predict(null);
 
             var graph = IsImportingGraph ? ImportGraph() : BuildGraph();
 
             with(tf.Session(graph), sess =>
             {
-                //Re-traing doing transfer learning on top of the pre-trained model
+                // Measuring CreatePredictionengine() time
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                            
+                // (*1*) Re-traing doing transfer learning on top of the pre-trained model
                 Train(sess);
 
-                //Try a prediction
+                watch.Stop();
+                long elapsedMs = watch.ElapsedMilliseconds;
+                Console.WriteLine("*** Training with transfer learning took: " + (elapsedMs / 1000).ToString() + " seconds ***");
+
+
+                // (*2*) Try a prediction
                 Predict(sess);
 
-                // load saved pb and test new images.
+                // (*3*) load saved pb and test new images.
                 Test(sess);
             });
 
@@ -513,10 +526,17 @@ namespace TensorFlowNET.Examples.ImageProcess
         public void PrepareData()
         {
             // get a set of images to teach the network about the new classes
-            string fileName = "flower_photos.tgz";
-            string url = $"http://download.tensorflow.org/example_images/{fileName}";
+
+            //FULL FLOWERS IMAGESET (3,600 files)
+            //string fileName = "flower_photos.tgz";
+            //string url = $"http://download.tensorflow.org/example_images/{fileName}";
+
+            //SMALL FLOWERS IMAGESET (200 files)
+            string fileName = "flower_photos_small_set.zip";
+            string url = $"https://mlnetfilestorage.file.core.windows.net/imagesets/flower_images/flower_photos_small_set.zip?st=2019-08-07T21%3A27%3A44Z&se=2030-08-08T21%3A27%3A00Z&sp=rl&sv=2018-03-28&sr=f&sig=SZ0UBX47pXD0F1rmrOM%2BfcwbPVob8hlgFtIlN89micM%3D";
+
             Web.Download(url, training_images_dir, fileName);
-            Compress.ExtractTGZ(Path.Join(training_images_dir, fileName), training_images_dir);
+            Compress.UnZip(Path.Join(training_images_dir, fileName), training_images_dir);
 
             // download graph meta data
             url = "https://raw.githubusercontent.com/SciSharp/TensorFlow.NET/master/graph/InceptionV3.meta";
@@ -542,7 +562,8 @@ namespace TensorFlowNET.Examples.ImageProcess
                      " - multiple classes are needed for classification.");
         }
 
-        private (Tensor, Tensor) add_jpeg_decoding()
+
+            private (Tensor, Tensor) add_jpeg_decoding()
         {
             // height, width, depth
             var input_dim = (299, 299, 3);
